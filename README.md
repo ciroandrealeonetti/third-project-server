@@ -93,12 +93,12 @@ Age: {type: Number}
 | GET         | `/auth/profile    `    | Saved session                | 200            | 404          | Check if user is logged in and return profile page           
 | POST        | `/auth/signup`         | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
 | POST        | `/auth/login`          | {email, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
-| POST        | `/auth/logout`         |                              | 204            | 400          | Logs out the user                                  | GET         | `/auth/profile/edit`   |                              | 200
-| PUT         | `/auth/profile/edit    |
-| GET         | `/api/workout/create`  |
-| POST        | `/api/workout/create`  |
-| GET         | `/api/workout/edit`    |
-| PUT         | `/api/workout/edit`    |
-| DELETE      | `/api/eorkout/delete`  |
-| GET         | `/api/excersise/list`  |
-| GET         | `/api/excercise/details`|
+| POST        | `/auth/logout`         |                              | 204            | 400          | Logs out the user                                  | GET         | `/auth/profile/edit`   |                              | 200            | 400          |
+| PUT         | `/auth/profile/edit    |                              | 200            | 400          | Edits the user profilr
+| GET         | `/api/workout/create`  |                              | 200            | 400          |
+| POST        | `/api/workout/create`  |                              | 200            | 400          | Creates the workout plan
+| GET         | `/api/workout/edit`    |                              | 200            | 400          |
+| PUT         | `/api/workout/edit`    |                              | 200            | 400          | Edits the workout plan
+| DELETE      | `/api/eorkout/delete`  |                              | 200            | 400          | Deletes the workout
+| GET         | `/api/excersise/list`  |                              | 200            | 400          | Shows the excersise general list
+| GET         | `/api/excercise/details`|                             | 200            | 400          | Shows the excersise details
