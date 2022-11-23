@@ -61,6 +61,8 @@ Pages:
 
 **Excercise model**
 
+```javascript
+
 {
 "name": "Rickshaw Carry",
 "type": "strongman",
@@ -69,9 +71,11 @@ Pages:
 "difficulty": "beginner",
 "instructions":"..."
 }
-
+```
 **Workout model**
+```javascript
 {
 "Goal": String
 "Age": Number
 }
+```
