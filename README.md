@@ -21,7 +21,7 @@ It's an app that allows you to find the right excercies for you to get back in s
 | `/signup`                    | SignupPage           | anon only  `<AnonRoute>`   | Signup form, navigates to home page after signup.         |
 | `/`                          | HomePage             | public `<Route>`           | Home page.                                                |
 | `/user-profile`              | ProfilePage          | user only `<PrivateRoute>` | User profile for the current user.                        |
-| `/workout-create`            | CreateWorkoutPage    | user only `<PrivateRoute>` | Create workout  form.                                     |
+| `/user-profile-edit`            | CreateWorkoutPage    | user only `<PrivateRoute>` | Create workout  form.                                     |
 | `/excercises-list`           | ExcercisesListPage   | user only `<PrivateRoute>` | Shows the excercise list page with a searchbar.           |
 | `/excercise-details`         | ExcerciseDetailsPage | user only `<PrivateRoute>` | Shows the page with the excercise details.                |
 
@@ -54,11 +54,15 @@ Pages:
 {
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  Goal: { type: String },
+  Name: {type: String},
   Age:  { type: Number } ,
   Weight: {type: Number },
   Height: {type: Number },
-  Level: {type: String}
+  Level:  {
+type: String
+enum:["beginner", "intermediate", "expert"]
+}
+Workouts: [{type: Schema.Type.ObjectId, ref:"workout"}]
 }
 ```
 
@@ -78,11 +82,12 @@ instructions: {String}
 **Workout model**
 ```javascript
 {
-Title: {
-excercises [{type: Schema.Type.ObjectId, ref:"excersise"}]
-Goal: {type: String
-enum:[" "]}
-Age: {type: Number}
+Title: type: String
+Excercises: [{type: Schema.Type.ObjectId, ref:"excersise"}]
+Goal: {
+type: String
+enum:["lose weight", "build muscle"]
+}
 }
 ```
 
@@ -95,11 +100,10 @@ Age: {type: Number}
 | POST        | `/auth/login`          | {email, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
 | POST        | `/auth/logout`         |                              | 204            | 400          | Logs out the user                                  | GET         | `/auth/profile/edit`   |                              | 200            | 400          |
 | PUT         | `/auth/profile/edit    |                              | 200            | 400          | Edits the user profilr
-| GET         | `/api/workout/create`  |                              | 200            | 400          |
 | POST        | `/api/workout/create`  |                              | 200            | 400          | Creates the workout plan
-| GET         | `/api/workout/edit`    |                              | 200            | 400          |
-| PUT         | `/api/workout/edit`    |                              | 200            | 400          | Edits the workout plan
-| DELETE      | `/api/eorkout/delete`  |                              | 200            | 400          | Deletes the workout
+| PUT         | `/api/workout/add-exercise`    |                              | 200            | 400          | Edits the workout plan
+| PUT         | `/api/workout/remove-exercise`    |                              | 200            | 400          | Edits the workout plan
+| DELETE      | `/api/workout/delete`  |                              | 200            | 400          | Deletes the workout
 | GET         | `/api/excersise/list`  |                              | 200            | 400          | Shows the excersise general list
 | GET         | `/api/excercise/details`|                             | 200            | 400          | Shows the excersise details
 
