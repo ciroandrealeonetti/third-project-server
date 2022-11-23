@@ -7,8 +7,9 @@ It's an app that allows you to find the right excercies for you to get back in s
 -  **Signup:** As an anonymous user I can sign up on the platform so that I can start creating and managing tournaments.
 -  **Login:** As a user I can login to the platform so that I can access my profile and start creating and managing tournaments.
 -  **Logout:** As a logged in user I can logout from the platform so no one else can use it.
--  **Profile Page**: As a logged in user I can visit my profile page so that I can access the edit page and see the list of tournaments I have created.
+-  **Profile Page**: As a logged in user I can visit my profile page so that I can access the workouts I created and edit them.
 -  **Excercises List Page**
+-  **Excercise Details Page**
 
 # Client / Frontend
 
@@ -19,9 +20,10 @@ It's an app that allows you to find the right excercies for you to get back in s
 | `/login`                     | LoginPage            | anon only `<AnonRoute>`    | Login form, navigates to home page after login.           |
 | `/signup`                    | SignupPage           | anon only  `<AnonRoute>`   | Signup form, navigates to home page after signup.         |
 | `/`                          | HomePage             | public `<Route>`           | Home page.                                                |
-| `/user-profile`              | ProfilePage          | user only `<PrivateRoute>` | User profile for the current user.             |
-| `/workout-create`            | CreateWorkoutPage    | user only `<PrivateRoute>` | Edit user profile form.                                   |
-
+| `/user-profile`              | ProfilePage          | user only `<PrivateRoute>` | User profile for the current user.                        |
+| `/workout-create`            | CreateWorkoutPage    | user only `<PrivateRoute>` | Create workout  form.                                     |
+| `/excercises-list`           | ExcercisesListPage   | user only `<PrivateRoute>` | Shows the excercise list page with a searchbar.           |
+| `/excercise-details`         | ExcerciseDetailsPage | user only `<PrivateRoute>` | Shows the page with the excercise details.                |
 
 ## Components
 
@@ -37,7 +39,9 @@ Pages:
 
 - CreateWorkoutPage
 
-- 
+- Excercises List Page
+
+- Excercise Details Page
 
 # Server / Backend
 
