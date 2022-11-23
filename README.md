@@ -1,6 +1,6 @@
 # third-project-server
 # Description
-It's an app that allows you to find the right excercies for you to get back in shape and to train wherever you want. You can find a list of exercices with also a video that shows you how to execute them.
+It's an app that allows you to find the right excercies for you to get back in shape and to train wherever you want. You can find a list of exercices, select the ones you like and add them to the workout plan that you can check in your profile.
 
 # User stories
 -  **404:** As a user I get to see a 404 page with a feedback message if I try to reach a page that does not exist so that I know it's my fault.
