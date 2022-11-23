@@ -102,3 +102,7 @@ Age: {type: Number}
 | DELETE      | `/api/eorkout/delete`  |                              | 200            | 400          | Deletes the workout
 | GET         | `/api/excersise/list`  |                              | 200            | 400          | Shows the excersise general list
 | GET         | `/api/excercise/details`|                             | 200            | 400          | Shows the excersise details
+
+## API's
+
+https://api-ninjas.com/profile
