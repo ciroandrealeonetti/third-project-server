@@ -54,8 +54,11 @@ Pages:
 {
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-	Goal: { type: String },
-  Age:  { type: Number } 
+  Goal: { type: String },
+  Age:  { type: Number } ,
+  Weight: {type: Number },
+  Height: {type: Number },
+  Level: {type: String}
 }
 ```
 
@@ -64,18 +67,38 @@ Pages:
 ```javascript
 
 {
-"name": "Rickshaw Carry",
-"type": "strongman",
-"muscle": "forearms",
-"equipment": "other",
-"difficulty": "beginner",
-"instructions":"..."
+name: {type: String},
+type: {type: String},
+muscle: {String},
+equipment: {String},
+difficulty: {String},
+instructions: {String}
 }
 ```
 **Workout model**
 ```javascript
 {
-"Goal": String
-"Age": Number
+Title: {
+excercises [{type: Schema.Type.ObjectId, ref:"excersise"}]
+Goal: {type: String
+enum:[" "]}
+Age: {type: Number}
 }
 ```
+
+## API Endpoints (backend routes)
+
+| HTTP Method | URL                    | Request Body                 | Success status | Error Status | Description                                                  
+| ----------- | ---------------------- | ---------------------------- | -------------- | ------------ | ---------------------------------------------------
+| GET         | `/auth/profile    `    | Saved session                | 200            | 404          | Check if user is logged in and return profile page           
+| POST        | `/auth/signup`         | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
+| POST        | `/auth/login`          | {email, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
+| POST        | `/auth/logout`         |                              | 204            | 400          | Logs out the user                                  | GET         | `/auth/profile/edit`   |                              | 200
+| PUT         | `/auth/profile/edit    |
+| GET         | `/api/workout/create`  |
+| POST        | `/api/workout/create`  |
+| GET         | `/api/workout/edit`    |
+| PUT         | `/api/workout/edit`    |
+| DELETE      | `/api/eorkout/delete`  |
+| GET         | `/api/excersise/list`  |
+| GET         | `/api/excercise/details`|
