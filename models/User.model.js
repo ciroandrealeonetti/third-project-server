@@ -18,6 +18,20 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    age: {
+      type: Number
+    },
+    weight: {
+      type: Number
+    },
+    height: {
+      type: Number      
+    },
+    level: {
+      type: String,
+      enum: ["beginner", "intermediate", "expert"]
+    },
+    workouts: [{type: Schema.Types.ObjectId, ref: "workout"}]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

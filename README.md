@@ -83,7 +83,7 @@ instructions: {String}
 ```javascript
 {
 Title: type: String
-Excercises: [{type: Schema.Type.ObjectId, ref:"excersise"}]
+Excercises: [{type: Schema.Type.ObjectId, ref:"excercise"}]
 Goal: {
 type: String
 enum:["lose weight", "build muscle"]
