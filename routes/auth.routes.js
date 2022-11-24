@@ -128,4 +128,36 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
   res.status(200).json(req.payload);
 });
 
+//Get User profile
+
+router.get("/profile/:userId", async (req, res, next) => {
+  const { userId } = req.params;
+  const currentUser = req.session.currentUser;
+  try {
+    const user = await User.findById(userId);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+//Edit user profile
+
+router.put("/profile/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, age, weight, height, level, workouts } = req.body;
+
+    const updatedProject = await User.findByIdAndUpdate(
+      id,
+      { name, age, weight, height, level, workouts },
+      //new: true gives us back the updated object instead of the old version
+      { new: true }
+    );
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

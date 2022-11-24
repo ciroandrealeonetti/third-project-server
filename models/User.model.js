@@ -31,7 +31,7 @@ const userSchema = new Schema(
       type: String,
       enum: ["beginner", "intermediate", "expert"]
     },
-    workouts: [{type: Schema.Types.ObjectId, ref: "workout"}]
+    workouts: [{type: Schema.Types.ObjectId, ref: "Workout"}]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

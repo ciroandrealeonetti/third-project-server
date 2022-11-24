@@ -1,19 +1,16 @@
 const { Schema, model } = require("mongoose");
 
-const workoutSchema = new Schema (
-    {
-        Title: {
-            type: String
-        },
-        Excercises: [{type: Schema.Types.ObjectId, ref:"excercise"}],
-        Goal: {
-            type: String,
-            enum: ["lose weight", "get toned", "build muscle"]
-        }
-    
-    }   
-)
+const workoutSchema = new Schema({
+  title: {
+    type: String,
+  },
+  excercises: [{ type: Schema.Types.ObjectId, ref: "Excercise" }],
+  goal: {
+    type: String,
+    enum: ["lose weight", "get toned", "build muscle"],
+  },
+});
 
-const workout = model("Workout", workoutSchema);
+const Workout = model("Workout", workoutSchema);
 
 module.exports = Workout;
