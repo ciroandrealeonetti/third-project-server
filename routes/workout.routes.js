@@ -4,19 +4,46 @@ const router = express.Router();
 const Workout = require("../models/Workout.model");
 const User = require("../models/User.model");
 
-router.get("/workouts", async (req, res, next) => {
+//Create workout
+
+router.post("/workouts/create", async (req, res, next) => {
   try {
-    res.status(200).json(allExcercises.data);
+    const { title, goal, userId } = req.body;
+
+    const createdWorkout = await Workout.create({ title, goal });
+
+    const updateUser = await User.findByIdAndUpdate(userId, { $push: { workouts: createdWorkout._id } })
+
+    res.status(200).json(createdWorkout);
   } catch (error) {
     next(error);
   }
 });
 
-router.post("/workouts/create", async (req, res, next) => {
+//Workout Edit
+
+router.put("/workouts/:workoutId/:excerciseId", async (req, res, next) => {
   try {
-    const { title, goal } = req.body;
-    const createdWorkout = await Workout.create({title, goal});
-    res.status(200).json(createdWorkout);
+    const { workoutId, excerciseId } = req.params;
+
+    const updatedWorkout = await Workout.findByIdAndUpdate(
+      workoutId,
+      { $pull: { excercises: excerciseId } },
+      { new: true }
+    );
+    res.status(200).json(updatedWorkout);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Workout Delete
+
+router.delete("/workouts/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deletedWorkout = await Workout.findByIdAndRemove(id);
+    res.status(200).json(deletedWorkout);
   } catch (error) {
     next(error);
   }

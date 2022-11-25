@@ -132,9 +132,10 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
 
 router.get("/profile/:userId", async (req, res, next) => {
   const { userId } = req.params;
-  const currentUser = req.session.currentUser;
+
   try {
     const user = await User.findById(userId);
+    res.status(200).json(user);
   } catch (error) {
     console.log(error);
     next(error);
@@ -148,7 +149,7 @@ router.put("/profile/:id", async (req, res, next) => {
     const { id } = req.params;
     const { name, age, weight, height, level, workouts } = req.body;
 
-    const updatedProject = await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       id,
       { name, age, weight, height, level, workouts },
       //new: true gives us back the updated object instead of the old version
