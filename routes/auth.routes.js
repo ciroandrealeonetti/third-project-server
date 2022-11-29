@@ -130,11 +130,11 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
 
 //Get User profile
 
-router.get("/profile/:userId", async (req, res, next) => {
-  const { userId } = req.params;
+router.get("/profile", isAuthenticated, async (req, res, next) => {
+  const  id  = req.payload._id;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(id);
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
@@ -144,9 +144,9 @@ router.get("/profile/:userId", async (req, res, next) => {
 
 //Edit user profile
 
-router.put("/profile/:id", async (req, res, next) => {
+router.put("/profile", isAuthenticated, async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const  id  = req.payload._id;
     const { name, age, weight, height, level, workouts } = req.body;
 
     const updatedUser = await User.findByIdAndUpdate(
