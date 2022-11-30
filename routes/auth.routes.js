@@ -134,7 +134,7 @@ router.get("/profile", isAuthenticated, async (req, res, next) => {
   const  id  = req.payload._id;
 
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("workouts").populate({path: "workouts", populate:{path:"excercises", model:"Excercise"}});
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
@@ -147,11 +147,11 @@ router.get("/profile", isAuthenticated, async (req, res, next) => {
 router.put("/profile", isAuthenticated, async (req, res, next) => {
   try {
     const  id  = req.payload._id;
-    const { name, age, weight, height, level, workouts } = req.body;
-
+    const { name, age, weight, height, level} = req.body;
+    console.log(req.body, id)
     const updatedUser = await User.findByIdAndUpdate(
       id,
-      { name, age, weight, height, level, workouts },
+      { name, age, weight, height, level },
       //new: true gives us back the updated object instead of the old version
       { new: true }
     );
